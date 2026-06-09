@@ -1,0 +1,27 @@
+{
+  "name": "bearer-token-image-skill-template",
+  "version": "1.0.0",
+  "type": "agent-skill-template",
+  "summary": "Reusable bearer-token image generation skill template for Trae, Hermes, and other agent frameworks.",
+  "entrypoints": {
+    "trae_skill": ".trae/skills/bearer-token-image-generator-template/SKILL.md",
+    "cli": "scripts/generic_image_generate.py",
+    "setup": "scripts/setup_bearer_env.py"
+  },
+  "runtime": {
+    "python": ">=3.10",
+    "dependencies": []
+  },
+  "template_fields": [
+    "skill name",
+    "provider name",
+    "model id",
+    "image generation endpoint",
+    "primary and secondary env key names"
+  ],
+  "compatibility": [
+    "Trae",
+    "Hermes-compatible agents",
+    "Any agent framework that can execute Python CLI commands"
+  ]
+}

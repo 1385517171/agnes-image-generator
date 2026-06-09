@@ -1,0 +1,40 @@
+{
+  "name": "agnes-image-generator-hermes-refresh",
+  "version": "1.1.1",
+  "type": "agent-skill",
+  "summary": "Fresh Agnes Image 2.1 Flash skill bundle with Hermes-safe env resolution and token setup.",
+  "entrypoints": {
+    "trae_skill": ".trae/skills/agnes-image-generator-hermes-refresh/SKILL.md",
+    "cli": "scripts/agnes_image_generate.py",
+    "setup": "scripts/setup_agnes_env.py"
+  },
+  "runtime": {
+    "python": ">=3.10",
+    "dependencies": []
+  },
+  "env": [
+    "AGNES_API_KEY",
+    "AGNES_IMAGE_API_KEY"
+  ],
+  "capabilities": [
+    "persistent-token-setup",
+    "text-to-image",
+    "image-to-image",
+    "download-first-image",
+    "json-output"
+  ],
+  "env_files": [
+    ".env.local",
+    ".env"
+  ],
+  "api": {
+    "provider": "Agnes AI",
+    "model": "agnes-image-2.1-flash",
+    "endpoint": "https://apihub.agnes-ai.com/v1/images/generations"
+  },
+  "compatibility": [
+    "Trae",
+    "Hermes-compatible agents",
+    "Any agent framework that can execute Python CLI commands"
+  ]
+}
