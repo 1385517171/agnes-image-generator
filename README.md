@@ -6,15 +6,17 @@ Reusable image-generation skills for Trae, Hermes, and other agent frameworks th
 
 ## Overview | 项目概览
 
-This repository contains two deliverables:
+This repository contains three deliverables:
 
 - a production-ready Agnes Image 2.1 Flash skill bundle
 - a reusable bearer-token image skill template for other providers
+- a universal Agnes Video V2.0 skill bundle for multiple agent frameworks
 
-本仓库包含两部分内容：
+本仓库包含三部分内容：
 
 - 一个可直接使用的 Agnes Image 2.1 Flash 生产级 skill
 - 一个可复用的 Bearer Token 图片 skill 模板，方便适配其他提供方
+- 一个面向多智能体框架的 Agnes Video V2.0 通用 skill 包
 
 ## Why This Repo | 为什么做这个仓库
 
@@ -44,6 +46,9 @@ This repository packages a verified solution and a reusable template so the same
 - `templates/bearer-token-image-skill-template/`
   - reusable template for other bearer-token image APIs
   - includes placeholder constants for provider name, model, endpoint, and env key names
+- `releases/agnes-video-generator-universal-1.1.0.zip`
+  - universal Agnes video skill bundle for Codex, Claude Code, OpenClaw, Trae, and Hermes-compatible agents
+  - ships a root AgentSkills package plus framework-specific adapter directories
 
 ## Production Bundle | 成品技能
 
@@ -79,6 +84,40 @@ python3 ./scripts/agnes_image_generate.py \
   --output /tmp/agnes-bund.png
 ```
 
+### Agnes Video Generator Universal Bundle
+
+Release asset: `releases/agnes-video-generator-universal-1.1.0.zip`
+
+Highlights:
+
+- model: `agnes-video-v2.0`
+- create endpoint: `https://apihub.agnes-ai.com/v1/videos`
+- retrieve endpoint: `https://apihub.agnes-ai.com/v1/videos/{task_id}`
+- supports text-to-video, image-to-video, multi-image video, and keyframe animation
+- designed as an AgentSkills-style package for cross-framework reuse
+- includes ready-made adapters for Codex, Claude Code, OpenClaw, Trae, and Hermes-compatible agents
+
+主要特性：
+
+- 模型固定为 `agnes-video-v2.0`
+- 通过异步任务接口创建和轮询视频生成结果
+- 支持文生视频、单图生视频、多图视频和关键帧动画
+- 根目录采用通用 AgentSkills 结构，方便跨框架复用
+- 内置 Codex、Claude Code、OpenClaw、Trae、Hermes 的安装适配目录
+
+Quick start:
+
+```bash
+python3 ./scripts/setup_agnes_video_env.py --api-key "Bearer YOUR_TOKEN"
+python3 ./scripts/agnes_video_generate.py \
+  --prompt "A cinematic shot of a cat walking on the beach at sunset" \
+  --width 1152 \
+  --height 768 \
+  --num-frames 121 \
+  --frame-rate 24 \
+  --output /tmp/agnes-video.mp4
+```
+
 ## Template Bundle | 通用模板
 
 ### Bearer Token Image Skill Template
@@ -103,6 +142,9 @@ Then rename the skill directory and the `name` field in `SKILL.md`.
 
 - Trae
 - Hermes-compatible agents
+- Codex
+- Claude Code
+- OpenClaw
 - Any agent framework that can execute Python CLI commands
 
 ## Hermes Notes | Hermes 使用说明
@@ -144,9 +186,10 @@ You can use the following captions on the GitHub page or release page:
 
 ## Versioning | 版本信息
 
-- Repository release tag: `v1.0.1`
+- Repository release tag: `v1.1.0`
 - Agnes bundle version: `1.1.1`
 - Template bundle version: `1.0.0`
+- Universal Agnes video bundle version: `1.1.0`
 
 ## License | 许可证
 
